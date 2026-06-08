@@ -51,7 +51,7 @@ func (s *productService) ListProducts(ctx context.Context) ([]models.ProductResp
 
 // ListProductsFiltered implements the Service interface for filtered products.
 func (s *productService) ListProductsFiltered(ctx context.Context, req models.ProductFilterRequest) ([]models.ProductResponse, error) {
-	// Calculate offset: (Page 1 - 1) * 10 = 0; (Page 2 - 1) * 10 = 10
+	// Calculate offset based on current page and limit
 	if req.Page > 0 {
 		req.Offset = (req.Page - 1) * req.Limit
 	}

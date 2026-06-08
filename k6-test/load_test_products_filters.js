@@ -71,6 +71,17 @@ export default function () {
     queryParams.push(`inStock=true`);
   }
 
+  // 40% chance to test pagination
+  if (Math.random() < 0.4) {
+    queryParams.push(`page=${Math.floor(Math.random() * 5) + 1}`);
+    // 50% chance within that to specify a custom limit (page size)
+    if (Math.random() < 0.5) {
+      const possibleLimits = [10, 20, 50, 200]; // Includes values to test the cap
+      const limit = possibleLimits[Math.floor(Math.random() * possibleLimits.length)];
+      queryParams.push(`limit=${limit}`);
+    }
+  }
+
   const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
   const url = `${BASE_URL}/api/v1/products${queryString}`;
 

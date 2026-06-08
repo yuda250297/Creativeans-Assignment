@@ -60,7 +60,9 @@ func (h *ProductHandler) ListProducts(c fiber.Ctx) error {
 
 	// Apply pagination and price defaults
 	if req.Limit <= 0 {
-		req.Limit = 10
+		req.Limit = 20
+	} else if req.Limit > 100 {
+		req.Limit = 100 // Security best practice: cap the max page size
 	}
 	if req.Page <= 0 {
 		req.Page = 1

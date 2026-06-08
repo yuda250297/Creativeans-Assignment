@@ -183,7 +183,7 @@ export default function ProductList() {
                     </div>
                     ))
                 ) : (
-                    <p>No products available.</p>
+                    <p>No products available. Try Removing some filters.</p>
                 )
             }
             
